@@ -1,6 +1,11 @@
 <?php
 require_once 'includes/auth.php';
-require_once 'config/database.php';
+$db = require_once 'config/database.php';
+
+if (!($db instanceof PDO)) {
+    error_log("Failed to get database connection in dashboard.php");
+    die("Database connection failed. Please try again later or contact support.");
+}
 
 $auth = new Auth($db);
 
